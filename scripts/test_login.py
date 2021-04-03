@@ -1,7 +1,9 @@
 import unittest
 
+from parameterized import parameterized
+
 from page.home_page import HomeBusiness
-from utils import BaseDriver
+from utils import BaseDriver, DataDriven, BAS_URL
 
 
 class Test_Login(unittest.TestCase):
@@ -15,10 +17,9 @@ class Test_Login(unittest.TestCase):
     def tearDownClass(cls):
         BaseDriver.close_driver()
 
-    def test_mukewang_login(self):
-        username = '15015754120'
-        pwd = 'kg83200477'
-        msg = '招伟杰'
+    @parameterized.expand(DataDriven().create_dict(folder='/data/login.json'))
+    def test_mukewang_login(self,username,pwd,msg):
+
         text_msg = self.homepage.home_mukewang_login(username,pwd)
         if text_msg == msg:
             print('登陆成功')

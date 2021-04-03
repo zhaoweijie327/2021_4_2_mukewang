@@ -1,3 +1,5 @@
+import parameterized
+
 from base.base_actions import ActionsChains
 from base.base_driver import BasePage, BaseHandles
 from base.base_findeleme import FindElement
@@ -74,6 +76,7 @@ class HomeBusiness:
 
     def __init__(self):
         self.homehandles = HomeHandles()
+
 
     def home_mukewang_login(self,username,pwd):
         self.homehandles.home_login()
